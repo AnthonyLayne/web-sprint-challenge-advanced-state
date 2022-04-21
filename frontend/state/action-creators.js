@@ -15,19 +15,33 @@ const getQuizAPI = "http://localhost:9000/api/quiz/next";
 const postQuizAPI = "http://localhost:9000/api/quiz/new";
 const postAnswerAPI = "http://localhost:9000/api/quiz/answer";
 
-export function moveClockwise() {}
+export function moveClockwise() {
+  return { type: MOVE_CLOCKWISE };
+}
 
-export function moveCounterClockwise() {}
+export function moveCounterClockwise() {
+  return { type: MOVE_COUNTERCLOCKWISE };
+}
 
-export function selectAnswer() {}
+export function selectAnswer() {
+  return { type: SET_SELECTED_ANSWER };
+}
 
-export function setMessage() {}
+export function setMessage() {
+  return { type: SET_INFO_MESSAGE };
+}
 
-export function setQuiz() {}
+export function setQuiz() {
+  return { type: SET_QUIZ_INTO_STATE };
+}
 
-export function inputChange() {}
+export function inputChange() {
+  return { type: INPUT_CHANGE };
+}
 
-export function resetForm() {}
+export function resetForm() {
+  return { type: RESET_FORM };
+}
 
 // ❗ Async action creators
 export function fetchQuiz() {
