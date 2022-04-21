@@ -46,6 +46,9 @@ export function resetForm() {
 // ❗ Async action creators
 export function fetchQuiz() {
   return function (dispatch) {
+    axios.get(getQuizAPI).then(() => {
+      dispatch();
+    });
     // First, dispatch an action to reset the quiz state (so the "Loading next quiz..." message can display)
     // On successful GET:
     // - Dispatch an action to send the obtained quiz to its state
@@ -53,6 +56,9 @@ export function fetchQuiz() {
 }
 export function postAnswer() {
   return function (dispatch) {
+    axios.post(postAnswerAPI).then(() => {
+      dispatch();
+    });
     // On successful POST:
     // - Dispatch an action to reset the selected answer state
     // - Dispatch an action to set the server message to state
@@ -61,6 +67,9 @@ export function postAnswer() {
 }
 export function postQuiz() {
   return function (dispatch) {
+    axios.post(postQuizAPI).then(() => {
+      dispatch();
+    });
     // On successful POST:
     // - Dispatch the correct message to the the appropriate state
     // - Dispatch the resetting of the form
