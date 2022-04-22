@@ -19,20 +19,19 @@ function Quiz(props) {
     <div id="wrapper">
       {
         // quiz already in state? Let's use that, otherwise render "Loading next quiz..."
-        true ? (
+        props.quiz ? (
           <>
             <h2>What is a closure?</h2>
 
             <div id="quizAnswers">
-              <div className="answer selected">
-                A function
-                <button>SELECTED</button>
-              </div>
-
-              <div className="answer">
-                An elephant
-                <button>Select</button>
-              </div>
+              {props.quiz.answers.map(() => {
+                return (
+                  <div className="answer">
+                    An elephant
+                    <button>Select</button>
+                  </div>
+                );
+              })}
             </div>
 
             <button id="submitAnswerBtn">Submit answer</button>
@@ -55,6 +54,16 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, { fetchQuiz, selectAnswer, postAnswer })(Quiz);
+
+/** <div className="answer selected">
+                A function
+                <button>SELECTED</button>
+              </div>
+
+              <div className="answer">
+                An elephant
+                <button>Select</button>
+              </div> */
 
 /**{
   wheel: 5,
