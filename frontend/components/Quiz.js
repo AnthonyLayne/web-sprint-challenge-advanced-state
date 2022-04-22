@@ -24,10 +24,11 @@ function Quiz(props) {
             <h2>What is a closure?</h2>
 
             <div id="quizAnswers">
-              {props.quiz.answers.map(() => {
+              {props.quiz.answers.map((answer, id) => {
+                const select = props.answerSelect === id;
                 return (
-                  <div className="answer">
-                    An elephant
+                  <div className={select ? "answer selected" : "answer"} key={answer.answer_id}>
+                    {answer.text}
                     <button>Select</button>
                   </div>
                 );
@@ -54,6 +55,8 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, { fetchQuiz, selectAnswer, postAnswer })(Quiz);
+
+//classname will have to be answer selected if selected or answer otherwise
 
 /** <div className="answer selected">
                 A function
