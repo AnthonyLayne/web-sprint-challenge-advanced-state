@@ -1,13 +1,19 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
-import { selectAnswer, fetchQuiz, postAnswer } from "../state/action-creators";
+import { selectAnswer, postAnswer, fetchQuiz } from "../state/action-creators";
 
 function Quiz(props) {
   //check if quiz exists, if it doesn't get the quiz
   //will need to post the answer when submitting
   //need to map out the two answers, they are currently hard coded in.
   //button on the answer changes from 'selected' to "SELECTED" when clicked, only changes if the other answer is selected
+
+  useEffect(() => {
+    if (!props.quiz) {
+      return props.fetchQuiz();
+    }
+  }, [props.quiz]);
 
   return (
     <div id="wrapper">
@@ -48,7 +54,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {})(Quiz);
+export default connect(mapStateToProps, { fetchQuiz, selectAnswer, postAnswer })(Quiz);
 
 /**{
   wheel: 5,

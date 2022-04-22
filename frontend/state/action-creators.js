@@ -25,9 +25,9 @@ export function moveCounterClockwise() {
   return { type: MOVE_COUNTERCLOCKWISE };
 }
 
-//payload: index of the answer, state is array of two objects
-export function selectAnswer() {
-  return { type: SET_SELECTED_ANSWER };
+//payload: answer id
+export function selectAnswer(answerId) {
+  return { type: SET_SELECTED_ANSWER, payload: answerId };
 }
 
 //no payload
@@ -53,8 +53,8 @@ export function resetForm() {
 // ❗ Async action creators
 export function fetchQuiz() {
   return function (dispatch) {
-    axios.get(getQuizAPI).then(() => {
-      dispatch();
+    axios.get(getQuizAPI).then((res) => {
+      dispatch({ type: SET_QUIZ_INTO_STATE, payload: res.data });
     });
     // First, dispatch an action to reset the quiz state (so the "Loading next quiz..." message can display)
     // On successful GET:
