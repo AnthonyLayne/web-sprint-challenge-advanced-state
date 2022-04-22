@@ -54,3 +54,28 @@ export default connect(mapStateToProps, { moveClockwise, moveCounterClockwise })
 {
   /* --i is a custom CSS property, no need to touch that nor the style object */
 }
+
+/**{
+  wheel: 5,
+  quiz: {
+    quiz_id: 'UnC4X',
+    question: 'asf',
+    answers: [
+      {
+        answer_id: 'h1WHs',
+        text: 'asdf'
+      },
+      {
+        answer_id: 'OYmJ0',
+        text: 'asdf'
+      }
+    ]
+  },
+  selectedAnswer: 'OYmJ0',
+  infoMessage: '',
+  form: {
+    newQuestion: '{[e.target.name]: e.target.value}',
+    newTrueAnswer: '',
+    newFalseAnswer: ''
+  }
+} */

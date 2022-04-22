@@ -15,30 +15,37 @@ const getQuizAPI = "http://localhost:9000/api/quiz/next";
 const postQuizAPI = "http://localhost:9000/api/quiz/new";
 const postAnswerAPI = "http://localhost:9000/api/quiz/answer";
 
+//no payload
 export function moveClockwise() {
   return { type: MOVE_CLOCKWISE };
 }
 
+//no payload
 export function moveCounterClockwise() {
   return { type: MOVE_COUNTERCLOCKWISE };
 }
 
+//payload: index of the answer, state is array of two objects
 export function selectAnswer() {
   return { type: SET_SELECTED_ANSWER };
 }
 
+//no payload
 export function setMessage() {
   return { type: SET_INFO_MESSAGE };
 }
 
+//no payload
 export function setQuiz() {
   return { type: SET_QUIZ_INTO_STATE };
 }
 
+//payload: key, val
 export function inputChange() {
   return { type: INPUT_CHANGE };
 }
 
+//no payload
 export function resetForm() {
   return { type: RESET_FORM };
 }
@@ -76,3 +83,28 @@ export function postQuiz() {
   };
 }
 // ❗ On promise rejections, use log statements or breakpoints, and put an appropriate error message in state
+
+/**{
+  wheel: 5,
+  quiz: {
+    quiz_id: 'UnC4X',
+    question: 'asf',
+    answers: [
+      {
+        answer_id: 'h1WHs',
+        text: 'asdf'
+      },
+      {
+        answer_id: 'OYmJ0',
+        text: 'asdf'
+      }
+    ]
+  },
+  selectedAnswer: 'OYmJ0',
+  infoMessage: '',
+  form: {
+    newQuestion: '{[e.target.name]: e.target.value}',
+    newTrueAnswer: '',
+    newFalseAnswer: ''
+  }
+} */

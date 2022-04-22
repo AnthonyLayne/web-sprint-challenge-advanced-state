@@ -11,6 +11,9 @@ import {
   RESET_FORM,
 } from "./action-types";
 
+//use state and not index
+//cog position state is 0-5, clockwise is state + 1, counter is state - 1,
+//clockwise - if state = 5 return to 0 position, counter - if state = 0 return to 5 position
 const initialWheelState = 0;
 function wheel(state = initialWheelState, action) {
   switch (action.type) {
@@ -29,7 +32,7 @@ function wheel(state = initialWheelState, action) {
     }
   }
 }
-
+//returns action.payload
 const initialQuizState = null;
 function quiz(state = initialQuizState, action) {
   switch (action.type) {
@@ -42,6 +45,8 @@ function quiz(state = initialQuizState, action) {
   }
 }
 
+//returns action.payload
+
 const initialSelectedAnswerState = null;
 function selectedAnswer(state = initialSelectedAnswerState, action) {
   switch (action.type) {
@@ -53,6 +58,8 @@ function selectedAnswer(state = initialSelectedAnswerState, action) {
     }
   }
 }
+
+//returns action.payload
 
 const initialMessageState = "";
 function infoMessage(state = initialMessageState, action) {
@@ -71,6 +78,7 @@ const initialFormState = {
   newTrueAnswer: "",
   newFalseAnswer: "",
 };
+//returns initialFormState, and spread state, spread action.payload
 function form(state = initialFormState, action) {
   switch (action.type) {
     case INPUT_CHANGE: {
@@ -86,3 +94,28 @@ function form(state = initialFormState, action) {
 }
 
 export default combineReducers({ wheel, quiz, selectedAnswer, infoMessage, form });
+
+/**{
+  wheel: 5,
+  quiz: {
+    quiz_id: 'UnC4X',
+    question: 'asf',
+    answers: [
+      {
+        answer_id: 'h1WHs',
+        text: 'asdf'
+      },
+      {
+        answer_id: 'OYmJ0',
+        text: 'asdf'
+      }
+    ]
+  },
+  selectedAnswer: 'OYmJ0',
+  infoMessage: '',
+  form: {
+    newQuestion: '{[e.target.name]: e.target.value}',
+    newTrueAnswer: '',
+    newFalseAnswer: ''
+  }
+} */
