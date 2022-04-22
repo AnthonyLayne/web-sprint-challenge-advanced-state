@@ -29,7 +29,13 @@ function Quiz(props) {
                 return (
                   <div className={select ? "answer selected" : "answer"} key={answer.answer_id}>
                     {answer.text}
-                    <button>Select</button>
+                    <button
+                      onClick={() => {
+                        selectAnswer(id);
+                      }}
+                    >
+                      {select ? "SELECTED" : "Select"}
+                    </button>
                   </div>
                 );
               })}
