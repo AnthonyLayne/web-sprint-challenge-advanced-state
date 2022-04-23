@@ -1,9 +1,17 @@
 import React from "react";
+import { connect } from "react-redux";
 
-export default function Message(props) {
-  return <div id="message">Nice job!</div>;
+function Message(props) {
+  return <div id="message">{props.headerMessage}</div>;
 }
 
+const mapStateToProps = (state) => {
+  return {
+    headerMessage: state.infoMessage,
+  };
+};
+
+export default connect(mapStateToProps)(Message);
 /**{
   wheel: 5,
   quiz: {
