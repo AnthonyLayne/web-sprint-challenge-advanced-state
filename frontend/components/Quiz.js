@@ -31,7 +31,7 @@ function Quiz(props) {
                     {answer.text}
                     <button
                       onClick={() => {
-                        selectAnswer(id);
+                        props.selectAnswer(id);
                       }}
                     >
                       {select ? "SELECTED" : "Select"}
@@ -40,8 +40,18 @@ function Quiz(props) {
                 );
               })}
             </div>
-
-            <button id="submitAnswerBtn">Submit answer</button>
+            {/**need answer id and quiz id */}
+            <button
+              id="submitAnswerBtn"
+              onClick={() =>
+                props.postAnswer({
+                  answer_id: props.quiz.answers[props.answerSelect].answer_id,
+                  quiz_id: props.quiz.quiz_id,
+                })
+              }
+            >
+              Submit answer
+            </button>
           </>
         ) : (
           "Loading next quiz..."
