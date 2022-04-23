@@ -1,6 +1,8 @@
 // ❗ You don't need to add extra action creators to achieve MVP
 import axios from "axios";
 
+import { initialSelectedAnswerState } from "./reducer";
+
 import {
   MOVE_CLOCKWISE,
   MOVE_COUNTERCLOCKWISE,
@@ -61,10 +63,12 @@ export function fetchQuiz() {
     // - Dispatch an action to send the obtained quiz to its state
   };
 }
-export function postAnswer() {
+export function postAnswer(post) {
   return function (dispatch) {
-    axios.post(postAnswerAPI).then(() => {
-      dispatch();
+    axios.post(postAnswerAPI, post).then((res) => {
+      dispatch({ type: SET_QUIZ_INTO_STATE, payload: null });
+      dispatch({ type: SET_SELECTED_ANSWER, payload: initialSelectedAnswerState });
+      dispatch({ type: SET_INFO_MESSAGE, payload: res.data.message });
     });
     // On successful POST:
     // - Dispatch an action to reset the selected answer state
