@@ -43,8 +43,8 @@ export function setQuiz() {
 }
 
 //payload: key, val
-export function inputChange() {
-  return { type: INPUT_CHANGE };
+export function inputChange(newFormKey, newFormVal) {
+  return { type: INPUT_CHANGE, payload: { [newFormKey]: newFormVal } };
 }
 
 //no payload
@@ -76,10 +76,14 @@ export function postAnswer(post) {
     // - Dispatch the fetching of the next quiz
   };
 }
-export function postQuiz() {
+export function postQuiz(formBody) {
   return function (dispatch) {
-    axios.post(postQuizAPI).then(() => {
-      dispatch();
+    axios.post(postQuizAPI, formBody).then((res) => {
+      dispatch({
+        type: SET_INFO_MESSAGE,
+        payload: `Congrats: "${res.data.question}" is a great question!`,
+      });
+      dispatch({ type: RESET_FORM });
     });
     // On successful POST:
     // - Dispatch the correct message to the the appropriate state
