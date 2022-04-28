@@ -9,7 +9,14 @@ export function Form(props) {
     props.inputChange(e.target.name, e.target.value);
   };
 
-  const onSubmit = (e) => {};
+  const onSubmit = (e) => {
+    e.preventDefault();
+    props.postQuiz({
+      question_text: newQuestion,
+      false_answer_text: newFalseAnswer,
+      true_answer_text: newTrueAnswer,
+    });
+  };
 
   return (
     <form id="form" onSubmit={onSubmit}>
