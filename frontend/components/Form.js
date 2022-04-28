@@ -17,6 +17,9 @@ export function Form(props) {
       true_answer_text: newTrueAnswer,
     });
   };
+  const disableBtnn = [newFalseAnswer, newQuestion, newTrueAnswer].some(
+    (field) => field.trim().length === 0
+  );
 
   return (
     <form id="form" onSubmit={onSubmit}>
@@ -34,7 +37,9 @@ export function Form(props) {
         id="newFalseAnswer"
         placeholder="Enter false answer"
       />
-      <button id="submitNewQuizBtn">Submit new quiz</button>
+      <button disabled={disableBtnn} id="submitNewQuizBtn">
+        Submit new quiz
+      </button>
     </form>
   );
 }
@@ -45,7 +50,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {})(Form);
+export default connect(mapStateToProps, { inputChange, postQuiz })(Form);
 
 /**{
   wheel: 5,
