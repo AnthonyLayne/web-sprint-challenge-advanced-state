@@ -1,11 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
-import * as actionCreators from "../state/action-creators";
+//import * as actionCreators from "../state/action-creators";
+import { inputChange, postQuiz } from "../state/action-creators";
 
 export function Form(props) {
-  const onChange = (evt) => {};
+  const { newQuestion, newTrueAnswer, newFalseAnswer } = props.form;
+  const onChange = (e) => {
+    props.inputChange(e.target.name, e.target.value);
+  };
 
-  const onSubmit = (evt) => {};
+  const onSubmit = (e) => {};
 
   return (
     <form id="form" onSubmit={onSubmit}>
@@ -28,7 +32,13 @@ export function Form(props) {
   );
 }
 
-export default connect((st) => st, actionCreators)(Form);
+const mapStateToProps = (state) => {
+  return {
+    form: state.form,
+  };
+};
+
+export default connect(mapStateToProps, {})(Form);
 
 /**{
   wheel: 5,
