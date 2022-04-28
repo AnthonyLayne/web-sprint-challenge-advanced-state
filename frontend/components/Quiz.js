@@ -15,6 +15,8 @@ function Quiz(props) {
     }
   }, [props.quiz]);
 
+  let disabledBttn = props.answerSelect === null ? true : false;
+
   return (
     <div id="wrapper">
       {
@@ -27,7 +29,11 @@ function Quiz(props) {
               {props.quiz.answers.map((answer, id) => {
                 const select = props.answerSelect === id;
                 return (
-                  <div className={select ? "answer selected" : "answer"} key={answer.answer_id}>
+                  <div
+                    id="button"
+                    className={select ? "answer selected" : "answer"}
+                    key={answer.answer_id}
+                  >
                     {answer.text}
                     <button
                       onClick={() => {
@@ -42,6 +48,7 @@ function Quiz(props) {
             </div>
             {/**need answer id and quiz id */}
             <button
+              disabled={disabledBttn}
               id="submitAnswerBtn"
               onClick={() =>
                 props.postAnswer({
